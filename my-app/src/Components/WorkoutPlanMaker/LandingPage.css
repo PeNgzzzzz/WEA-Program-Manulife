@@ -1,0 +1,79 @@
+
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
+#landing-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 100px;
+
+}
+
+
+h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 5vw;
+    text-transform: uppercase;
+
+    color: #000000;
+
+    position: absolute;
+    width: 60%;
+    height: 40%;
+    left: -5%;
+    top: 5%;
+}
+
+
+h2{
+    position: absolute;
+    width: 40%;
+    height: 20%;
+    left: 55%;
+    top: 30%;
+    display: flex;
+    flex-flow: column wrap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vw;
+    text-align: right;
+    text-transform: uppercase;
+
+    color: #000000;
+}
+
+p{
+    position: absolute;
+    width: 1028px;
+    height: 84px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 200%);
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+    text-align: center;
+    text-transform: uppercase;
+
+color: #000000;
+}
+
+#down-arrow{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 290%);
+
+    background: url(https://s3-alpha-sig.figma.com/img/db41/e8d0/eda38e76d3ff66e63fc5158e5b29d554?Expires=1655078400&Signature=NW4xY51432TiCV4M2zu5FoGnaWyHrwx9bTHt~0Dz1Gl0RwhXOREZIu2UBd29W20CJD06ctKRBwRGIVJqMMJUNvgLpDGslzxx70tu7PRjyQC55fQBDPE5rC1Pnk5MqORpp0rT7taiWQ4azeGe5focGjU6v-LRwMSogHDPhL4hR7dfIx5Temdm9xNp8FoWAvgmev-Abs83VfJn58zpzL-iqSRODqUM5uNnMk3Zxr4MgfF5RuRDbUhWSUEIBoeDB52krWn02qWlviENOEm3J~L6m9h0OjbnH8uHPlIjJYl1Q8Sex-wFYdyJrOxmzeiYNOohv9qj7gL5QTmvA0ZgL2-ppA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+}

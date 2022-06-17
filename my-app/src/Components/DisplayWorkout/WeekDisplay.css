@@ -1,0 +1,13 @@
+
+#grid-container {
+    width: 90%;
+    height: 20%;
+    background-color: grey;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    display: grid;
+    columns: auto;
+    }
+
