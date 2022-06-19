@@ -1,5 +1,5 @@
 
-#grid-container {
+/* #grid-container {
     width: 90%;
     height: 20%;
     background-color: grey;
@@ -9,5 +9,36 @@
     position: relative;
     display: grid;
     columns: auto;
-    }
+} */
+
+h1 {
+    position: static;
+    color: red;
+    text-align: center;
+}
+
+div {
+    font-family: sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid green;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+  
+td, th {
+    border: 1px solid red;
+    padding: 10px 20px;
+}
+
+td {
+    text-align: center;
+}
+
+caption {
+    padding: 10px;
+}
 

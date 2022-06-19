@@ -1,6 +1,6 @@
 #day{
     position: relative;
     height: 100%;
-    display: inline;
+    display: internal;
     border: 4px solid white
 }
