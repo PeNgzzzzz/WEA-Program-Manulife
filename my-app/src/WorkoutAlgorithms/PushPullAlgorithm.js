@@ -12,8 +12,8 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
 
     //array represents the excersizes performed
-    let excersizesForDay = []
-    let filteredExcersize
+    let excersizesForDay = [];
+    let filteredExcersize;
 
 
 

@@ -15,7 +15,6 @@ function App() {
   //state for database of excersizes
   const[database, setDatabase] = useState([])
 
-
   
   return (
     <Router>
