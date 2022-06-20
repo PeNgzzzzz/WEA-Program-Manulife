@@ -2,16 +2,26 @@ import React, { useEffect, useState } from 'react'
 import DailyDisplay from './DailyDisplay'
 import axios from 'axios'
 import './WeekDisplay.css'
-import PushPullAlgorithm from '../../WorkoutAlgorithms/PushPullAlgorithm'
-import FullbodyAlgorithm from '../../WorkoutAlgorithms/FullBodyAlgorithm'
-import UpperLowerAlgorithm from '../../WorkoutAlgorithms/UpperLowerAlgorithm'
+
 
 const WeekDisplay = (props) => {
 
+    let database = []
 
+    useEffect(() => {
+        fetch("https://api.airtable.com/v0/apphWFw7ZFVtrFDU1/Excersize?api_key=keyq9zwQFUhapGR9W")
+            .then((res) => res.json())
+            .then((data) => {
+                database.push(data.records);
+                //database = database[0];
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
-
-
+    
+    console.log(database)
 
     //changes what muscle workout per day of week if push pull is workout type
     const getSchedule = () => {
@@ -56,7 +66,7 @@ const WeekDisplay = (props) => {
     getSchedule()
 
     //maps each day of week and renders the daily display for each day
-    let week = props.daysOfWeek.map(day => <DailyDisplay workoutType={workoutType} muscleGroup={day.workout} day={day.name} database={props.database} key={Math.random(1000)} />)
+    let week = props.daysOfWeek.map(day => <DailyDisplay workoutType={workoutType} muscleGroup={day.workout} day={day.name} goal={props.goal} database={database} key={Math.random(1000)} />)
 
 
     return (

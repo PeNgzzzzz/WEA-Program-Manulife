@@ -15,16 +15,7 @@ function App() {
   //state for database of excersizes
   const[database, setDatabase] = useState([])
 
-  useEffect(() => {
-    fetch("https://api.airtable.com/v0/apphWFw7ZFVtrFDU1/Excersize?api_key=keyq9zwQFUhapGR9W")
-      .then((res) => res.json())
-      .then((data) => {
-        setDatabase(data.records);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+
   
   return (
     <Router>

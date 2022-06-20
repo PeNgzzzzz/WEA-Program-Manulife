@@ -3,7 +3,7 @@ const selectExcersize = (arr) => {
 }
 
 
-const PushPullAlgorithm = (database, muscleGroup) => {
+const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps, isolationReps) => {
 
 
     //array represents the excersizes performed
@@ -16,20 +16,27 @@ const PushPullAlgorithm = (database, muscleGroup) => {
 
         if (muscleGroup != 'rest') {
 
-            if (muscleGroup === 'upper') {
-                filteredExcersize = database.filter(excersize => excersize.fields.Warmup === 'push' || excersize.fields.Warmup === 'pull');
-            }
-            else {
-                filteredExcersize = database.filter(excersize => excersize.fields.Warmup === 'legs');
+            if (goal === 'buildMuscle' || goal === 'buildStrength') {
+                if (muscleGroup === 'upper') {
+                    filteredExcersize = database.filter(excersize => excersize.fields.Warmup === 'push' || excersize.fields.Warmup === 'pull');
+                }
 
+                else {
+                    filteredExcersize = database.filter(excersize => excersize.fields.Warmup === 'legs');
+                }
+            }
+
+            else if (goal === 'loseFat') {
+                filteredExcersize = database.filter(excersize => excersize.fields.ExerciseType[0] === 'Cardio');
             }
 
             if (filteredExcersize) {
                 let selectedWarmup = selectExcersize(filteredExcersize);
-                selectedWarmup = { 'name': selectedWarmup.fields.Exercise, 'muscle': selectedWarmup.fields.MajorMuscle[0], 'reps': '3x6', 'image': 'IMAGEURL' }
+                selectedWarmup = { 'name': selectedWarmup.fields.Exercise, 'muscle': selectedWarmup.fields.MajorMuscle[0], 'reps': warmupReps, 'image': 'IMAGEURL' }
                 excersizesForDay.push(selectedWarmup);
 
             }
+
         }
     }
 
@@ -40,47 +47,77 @@ const PushPullAlgorithm = (database, muscleGroup) => {
 
             let numOfCompounds;
 
+            if (goal === 'buildMuscle' || goal === 'buildStrength') {
+                if (muscleGroup === 'upper') {
+                    filteredExcersize = database.filter(excersize => ((excersize.fields.MajorMuscle.indexOf('Back') !== -1 || excersize.fields.MajorMuscle.indexOf('Chest') !== -1 || excersize.fields.MajorMuscle.indexOf('Shoulders') !== -1) && excersize.fields.Compound === 'yes' && excersize.fields.Warmup === 'no'))
 
-            if (muscleGroup === 'upper') {
-                filteredExcersize = database.filter(excersize => ((excersize.fields.MajorMuscle.indexOf('Back') !== -1 || excersize.fields.MajorMuscle.indexOf('Chest') !== -1 || excersize.fields.MajorMuscle.indexOf('Shoulders') !== -1) && excersize.fields.Compound === 'yes' && excersize.fields.Warmup === 'no'))
+                    numOfCompounds = 3
+                }
+                else {
+                    //HAVE TO ADD COMPPUND AS FILTER
+                    filteredExcersize = database.filter(excersize => (excersize.fields.MajorMuscle.indexOf('Legs') !== -1))
 
-                numOfCompounds = 3
+                    numOfCompounds = 4
+                }
+
+
+                if (filteredExcersize) {
+                    //gets two compound excersizes
+                    function CompoundGetterLoop() {
+                        if (excersizesForDay.length <= numOfCompounds) {
+
+                            let selectedCompound = selectExcersize(filteredExcersize)
+
+                            if (muscleGroup === 'upper') {
+                                selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0], 'reps': compoundReps, 'image': 'IMAGEURL' }
+                            }
+                            else {
+                                selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MinorMuscle[0], 'reps': compoundReps, 'image': 'IMAGEURL' }
+                            }
+                            //gets new selected excersizes until they arent alrerady in routine to remove duplicated
+                            excersizesForDay.push(selectedCompound)
+
+                            if (muscleGroup === 'upper') {
+                                filteredExcersize = filteredExcersize.filter(excersize => excersize.fields.MajorMuscle[0] !== selectedCompound.muscle)
+                            }
+                            else {
+                                filteredExcersize = filteredExcersize.filter(excersize => excersize.fields.MinorMuscle[0] !== selectedCompound.muscle)
+                            }
+
+                            CompoundGetterLoop()
+                        }
+                    }
+                    CompoundGetterLoop()
+                }
             }
-            else {
-                //HAVE TO ADD COMPPUND AS FILTER
-                filteredExcersize = database.filter(excersize => (excersize.fields.MajorMuscle.indexOf('Legs') !== -1))
 
-                numOfCompounds = 4
-            }
+            else if (goal === 'loseFat') {
+                let numOfCompounds = 3;
 
+                filteredExcersize = database.filter(excersize => excersize.fields.ExerciseType[0] === 'Cardio' && excersize.fields.Compound === 'yes');
+                if (filteredExcersize) {
+                    //gets two compound excersizes
+                    while (excersizesForDay.length <= numOfCompounds) {
 
-            if (filteredExcersize) {
-                //gets two compound excersizes
-                function CompoundGetterLoop() {
-                    if (excersizesForDay.length <= numOfCompounds) {
+                        
 
                         let selectedCompound = selectExcersize(filteredExcersize)
 
-                        if (muscleGroup === 'upper') {
-                            selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0], 'reps': '3x6', 'image': 'IMAGEURL' }
-                        }
-                        else {
-                            selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MinorMuscle[0], 'reps': '3x6', 'image': 'IMAGEURL' }
-                        }
+                        selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0], 'reps': compoundReps, 'image': 'IMAGEURL' }
+
                         //gets new selected excersizes until they arent alrerady in routine to remove duplicated
-                        excersizesForDay.push(selectedCompound)
+                        while (excersizesForDay.findIndex(activity => activity.name === selectedCompound.name) !== -1) {
 
-                        if (muscleGroup === 'upper') {
-                            filteredExcersize = filteredExcersize.filter(excersize => excersize.fields.MajorMuscle[0] !== selectedCompound.muscle)
-                        }
-                        else {
-                            filteredExcersize = filteredExcersize.filter(excersize => excersize.fields.MinorMuscle[0] !== selectedCompound.muscle)
+                            selectedCompound = selectExcersize(filteredExcersize)
+                            selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0], 'reps': compoundReps, 'image': 'IMAGEURL' }
+   
                         }
 
-                        CompoundGetterLoop()
+                        excersizesForDay.push(selectedCompound);
+
                     }
                 }
-                CompoundGetterLoop()
+
             }
 
         }
@@ -93,35 +130,65 @@ const PushPullAlgorithm = (database, muscleGroup) => {
 
 
         if (muscleGroup != 'rest') {
+            if (goal === 'buildMuscle' || goal === 'buildStrength') {
+                if (muscleGroup === 'upper') {
+                    filteredExcersize = database.filter(excersize => ((excersize.fields.MinorMuscle.indexOf('Bicep') !== -1 || excersize.fields.MinorMuscle.indexOf('Tricep') !== -1) && excersize.fields.Compound === 'no' && excersize.fields.Warmup === 'no'))
+                }
+                else {
+                    filteredExcersize = database.filter(excersize => (excersize.fields.MinorMuscle.indexOf('Calves') !== -1))
+                }
 
-            if (muscleGroup === 'upper') {
-                filteredExcersize = database.filter(excersize => ((excersize.fields.MinorMuscle.indexOf('Bicep') !== -1 || excersize.fields.MinorMuscle.indexOf('Tricep') !== -1) && excersize.fields.Compound === 'no' && excersize.fields.Warmup === 'no'))
+
+
+
+
+                if (filteredExcersize) {
+                    //gets two isolation excersizes
+                    function IsolationGetterLoop() {
+                        if (excersizesForDay.length < 6) {
+
+                            let selectedIsolation = selectExcersize(filteredExcersize)
+
+                            selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MinorMuscle[0], 'reps': isolationReps, 'image': 'IMAGEURL' }
+
+                            //gets new selected excersizes until they arent alrerady in routine to remove duplicated
+                            excersizesForDay.push(selectedIsolation)
+
+                            filteredExcersize = filteredExcersize.filter(excersize => excersize.fields.MinorMuscle[0] !== selectedIsolation.muscle)
+                            IsolationGetterLoop()
+                        }
+                    }
+                    IsolationGetterLoop()
+                }
             }
-            else {
-                filteredExcersize = database.filter(excersize => (excersize.fields.MinorMuscle.indexOf('Calves') !== -1))
-            }
+
+            else if (goal === 'loseFat') {
 
 
+                filteredExcersize = database.filter(excersize => excersize.fields.ExerciseType[0] === 'Cardio');
 
-
-            if (filteredExcersize) {
-                //gets two isolation excersizes
-                function IsolationGetterLoop() {
-                    if (excersizesForDay.length < 6) {
+                if (filteredExcersize) {
+                    //gets two compound excersizes
+                    while (excersizesForDay.length < 6) {
 
                         let selectedIsolation = selectExcersize(filteredExcersize)
 
-                        selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MinorMuscle[0], 'reps': '3x6', 'image': 'IMAGEURL' }
-                        
-                        //gets new selected excersizes until they arent alrerady in routine to remove duplicated
-                        excersizesForDay.push(selectedIsolation)
+                        selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MajorMuscle[0], 'reps': isolationReps, 'image': 'IMAGEURL' }
 
-                        filteredExcersize = filteredExcersize.filter(excersize =>  excersize.fields.MinorMuscle[0] !== selectedIsolation.muscle)
-                        IsolationGetterLoop()
+                        //gets new selected excersizes until they arent alrerady in routine to remove duplicated
+                        while (excersizesForDay.findIndex(activity => activity.name === selectedIsolation.name) !== -1) {
+
+                            selectedIsolation = selectExcersize(filteredExcersize)
+                            selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MajorMuscle[0], 'reps': isolationReps, 'image': 'IMAGEURL' }
+                     
+                        }
+
+                        excersizesForDay.push(selectedIsolation);
+
                     }
                 }
-                IsolationGetterLoop()
             }
+
         }
 
     }

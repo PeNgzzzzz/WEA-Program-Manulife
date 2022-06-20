@@ -8,22 +8,49 @@ import UpperLowerAlgorithm from '../../WorkoutAlgorithms/UpperLowerAlgorithm'
 let day;
 
 
+
+
+
+
+
+
 const DailyDisplay = (props) => {
     let objs = [];
     let exers = [];
     day = props.day;
+    let warmupReps
+    let compoundReps;
+    let isolationReps;
+    let weight;
 
+    if(props.goal === 'buildMuscle'){
+        warmupReps = '2x10';
+        compoundReps = '3x10';
+        isolationReps = '2x12';
+        weight = 'Moderate';
+    }
+    else if(props.goal === 'buildStrength'){
+        warmupReps = '2x10';
+        compoundReps = '3x6';
+        isolationReps = '2x12';
+        weight = 'Moderate';
+    }
+    else if(props.goal === 'loseFat'){
+        warmupReps = '2x5 min';
+        compoundReps = '3x5 min';
+        isolationReps = '2x5 min';
+    }
     
     if(props.workoutType === 'PushPull'){
-        objs = PushPullAlgorithm(props.database, props.muscleGroup);
+        objs = PushPullAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
         console.log(objs);
     }
     else if(props.workoutType === 'fullbody'){
-        objs = FullbodyAlgorithm(props.database, props.muscleGroup);
+        objs = FullbodyAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
         console.log(objs)
     }
     else{
-        console.log(UpperLowerAlgorithm(props.database, props.muscleGroup))
+        console.log(UpperLowerAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps));
     }
 
     /*
