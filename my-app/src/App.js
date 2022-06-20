@@ -15,16 +15,6 @@ function App() {
   //state for database of excersizes
   const[database, setDatabase] = useState([])
 
-  useEffect(() => {
-    fetch("https://restapi-wea202.herokuapp.com/api/exercises")
-      .then((res) => res.json())
-      .then((data) => {
-        setDatabase(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
   
   return (
     <Router>
