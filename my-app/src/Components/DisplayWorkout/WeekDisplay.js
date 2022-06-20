@@ -6,12 +6,6 @@ import './WeekDisplay.css'
 
 const WeekDisplay = (props) => {
 
-    let database = []
-
-    
-
-    
-    console.log(database)
 
     //changes what muscle workout per day of week if push pull is workout type
     const getSchedule = () => {
@@ -56,7 +50,7 @@ const WeekDisplay = (props) => {
     getSchedule()
 
     //maps each day of week and renders the daily display for each day
-    let week = props.daysOfWeek.map(day => <DailyDisplay workoutType={workoutType} muscleGroup={day.workout} day={day.name} goal={props.goal} database={database} key={Math.random(1000)} />)
+    let week = props.daysOfWeek.map(day => <DailyDisplay workoutType={workoutType} muscleGroup={day.workout} day={day.name} goal={props.goal} database={props.database} key={Math.random(1000)} />)
 
 
     return (

@@ -16,7 +16,6 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
     let filteredExcersize;
 
 
-
     //gets warmup 
 
     const GetWarmUp = () => {
@@ -32,6 +31,7 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
             if (filteredExcersize) {
                 let selectedWarmup = selectExcersize(filteredExcersize);
+                
                 selectedWarmup = { 'name': selectedWarmup.Exercise, 'muscle': selectedWarmup.MajorMuscle, 'reps': warmupReps, 'image': 'IMAGEURL' }
                 excersizesForDay.push(selectedWarmup);
             }
