@@ -10,7 +10,7 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
     let excersizesForDay = []
     let filteredExcersize
 
-
+    console.log(database)
 
     //gets warmup
 
