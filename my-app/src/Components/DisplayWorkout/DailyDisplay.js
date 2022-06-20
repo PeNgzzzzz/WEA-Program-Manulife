@@ -5,7 +5,7 @@ import FullbodyAlgorithm from '../../WorkoutAlgorithms/FullBodyAlgorithm'
 import UpperLowerAlgorithm from '../../WorkoutAlgorithms/UpperLowerAlgorithm'
 
 
-let day;
+let day; // day
 
 
 const DailyDisplay = (props) => {
