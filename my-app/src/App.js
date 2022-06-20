@@ -16,10 +16,10 @@ function App() {
   const[database, setDatabase] = useState([])
 
   useEffect(() => {
-    fetch("https://api.airtable.com/v0/apphWFw7ZFVtrFDU1/Excersize?api_key=keyq9zwQFUhapGR9W")
+    fetch("https://restapi-wea202.herokuapp.com/api/exercises")
       .then((res) => res.json())
       .then((data) => {
-        setDatabase(data.records);
+        setDatabase(data);
       })
       .catch((error) => {
         console.log(error);

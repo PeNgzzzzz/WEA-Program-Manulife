@@ -12,18 +12,18 @@ const PushPullAlgorithm = (database, muscleGroup) => {
 
 
     //array represents the excersizes performed
-    let excersizesForDay = []
-    let filteredExcersize
+    let excersizesForDay = [];
+    let filteredExcersize;
 
     //gets warmup 
 
     const GetWarmUp = () => {
 
         if (muscleGroup != 'rest') {
-            filteredExcersize = database.filter(excersize => excersize.fields.Warmup === muscleGroup);
+            filteredExcersize = database.filter(excersize => excersize.Warmup === muscleGroup);
             if (filteredExcersize) {
                 let selectedWarmup = selectExcersize(filteredExcersize);
-                excersizesForDay.push(selectedWarmup.fields.Exercise);
+                excersizesForDay.push(selectedWarmup.Exercise);
             }
         }
     }
@@ -49,11 +49,11 @@ const PushPullAlgorithm = (database, muscleGroup) => {
             
 
             if(muscleGroup === 'push'){
-                filteredExcersize = database.filter(excersize => (excersize.fields.MajorMuscle.indexOf(target) !== -1 || excersize.fields.MajorMuscle.indexOf('Shoulders') !== -1 && excersize.fields.Compound === 'yes' && excersize.fields.Warmup === 'no'))
+                filteredExcersize = database.filter(excersize => (excersize.MajorMuscle.indexOf(target) !== -1 || excersize.MajorMuscle.indexOf('Shoulders') !== -1 && excersize.Compound === 'yes' && excersize.Warmup === 'no'))
                 numOfCompounds = 3
             }
             else{
-                filteredExcersize = database.filter(excersize => (excersize.fields.MajorMuscle.indexOf(target) !== -1 && excersize.fields.Compound === 'yes' && excersize.fields.Warmup === 'no'))
+                filteredExcersize = database.filter(excersize => (excersize.MajorMuscle.indexOf(target) !== -1 && excersize.Compound === 'yes' && excersize.Warmup === 'no'))
             }
 
             if (filteredExcersize) {
@@ -63,13 +63,13 @@ const PushPullAlgorithm = (database, muscleGroup) => {
                     let selectedCompound = selectExcersize(filteredExcersize)
 
                     //gets new selected excersizes until they arent alrerady in routine to remove duplicated
-                    while (excersizesForDay.indexOf(selectedCompound.fields.Exercise) !== -1 && excersizesForDay.indexOf(selectedCompound.fields.MinorMuscle !== 'Middle Chest') 
-                            && (excersizesForDay.indexOf(selectedCompound.fields.MinorMuscle !== 'Lower Chest')  || excersizesForDay.indexOf(selectedCompound.fields.MinorMuscle !== 'Upper Chest')) && excersizesForDay.indexOf(selectedCompound.fields.MinorMuscle !== 'Shoulders')) {
+                    while (excersizesForDay.indexOf(selectedCompound.Exercise) !== -1 && excersizesForDay.indexOf(selectedCompound.MinorMuscle !== 'Middle Chest') 
+                            && (excersizesForDay.indexOf(selectedCompound.MinorMuscle !== 'Lower Chest')  || excersizesForDay.indexOf(selectedCompound.MinorMuscle !== 'Upper Chest')) && excersizesForDay.indexOf(selectedCompound.MinorMuscle !== 'Shoulders')) {
 
                         selectedCompound = selectExcersize(filteredExcersize)
 
                     }
-                    excersizesForDay.push(selectedCompound.fields.Exercise)
+                    excersizesForDay.push(selectedCompound.Exercise)
 
                 }
             }
@@ -93,7 +93,7 @@ const PushPullAlgorithm = (database, muscleGroup) => {
                 target = 'Glutes';
             }
 
-            filteredExcersize = database.filter(excersize => (excersize.fields.MinorMuscle.indexOf(target) !== -1 && excersize.fields.Compound === 'no' && excersize.fields.Warmup === 'no'))
+            filteredExcersize = database.filter(excersize => (excersize.MinorMuscle.indexOf(target) !== -1 && excersize.Compound === 'no' && excersize.Warmup === 'no'))
 
 
 
@@ -102,10 +102,10 @@ const PushPullAlgorithm = (database, muscleGroup) => {
                 while (excersizesForDay.length < 5) {
                     let selectedIsolation = selectExcersize(filteredExcersize)
                     //gets new selected excersizes until they arent alrerady in routine to remove duplicated
-                    while (excersizesForDay.indexOf(selectedIsolation.fields.Exercise) !== -1) {
+                    while (excersizesForDay.indexOf(selectedIsolation.Exercise) !== -1) {
                         selectedIsolation = selectExcersize(filteredExcersize)
                     }
-                    excersizesForDay.push(selectedIsolation.fields.Exercise)
+                    excersizesForDay.push(selectedIsolation.Exercise)
                 }
             }
         }
