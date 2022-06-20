@@ -18,7 +18,7 @@ const FullbodyAlgorithm = (database, muscleGroup) => {
             filteredExcersize = database.filter(excersize => excersize.fields.Warmup === muscleGroup);
             if (filteredExcersize) {
                 let selectedWarmup = selectExcersize(filteredExcersize);
-                selectedWarmup = { 'name': selectedWarmup.fields.Exercise, 'muscle': 'warmup' }
+                selectedWarmup = { 'name': selectedWarmup.fields.Exercise, 'muscle': 'warmup', 'reps': '3x6', 'image' : 'IMAGEURL' }
                 excersizesForDay.push(selectedWarmup);
             }
         }
@@ -41,12 +41,12 @@ const FullbodyAlgorithm = (database, muscleGroup) => {
                 while (excersizesForDay.length <= numOfCompounds) {
 
                     let selectedCompound = selectExcersize(filteredExcersize)
-                    selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0] }
+                    selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0], 'reps': '3x6', 'image' : 'IMAGEURL' }
 
                     //gets new selected excersizes until they arent alrerady in routine to remove duplicated
-                    while (excersizesForDay.findIndex(activity => activity.name === selectedCompound.name) !== -1 && excersizesForDay.findIndex(activity => activity.muscle === selectedCompound.muscle) !== -1) {
+                    while (excersizesForDay.findIndex(activity => activity.name === selectedCompound.name) !== -1 || excersizesForDay.findIndex(activity => activity.muscle === selectedCompound.muscle) !== -1) {
                         selectedCompound = selectExcersize(filteredExcersize)
-                        selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0] }
+                        selectedCompound = { 'name': selectedCompound.fields.Exercise, 'muscle': selectedCompound.fields.MajorMuscle[0], 'reps': '3x6', 'image' : 'IMAGEURL' }
 
                     }
 
@@ -74,11 +74,11 @@ const FullbodyAlgorithm = (database, muscleGroup) => {
                 //gets two isolation excersizes
                 while (excersizesForDay.length < 6) {
                     let selectedIsolation = selectExcersize(filteredExcersize)
-                    selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MajorMuscle[0] }
+                    selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MajorMuscle[0], 'reps': '3x6', 'image' : 'IMAGEURL' }
                     //gets new selected excersizes until they arent alrerady in routine to remove duplicated
-                    while (excersizesForDay.findIndex(activity => activity.name === selectedIsolation.name) !== -1 && excersizesForDay.findIndex(activity => activity.muscle === selectedIsolation.muscle) !== -1) {
+                    while (excersizesForDay.findIndex(activity => activity.name === selectedIsolation.name) !== -1 || excersizesForDay.findIndex(activity => activity.muscle === selectedIsolation.muscle) !== -1) {
                         selectedIsolation = selectExcersize(filteredExcersize)
-                        selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MajorMuscle[0] }
+                        selectedIsolation = { 'name': selectedIsolation.fields.Exercise, 'muscle': selectedIsolation.fields.MajorMuscle[0], 'reps': '3x6', 'image' : 'IMAGEURL' }
                     }
                     excersizesForDay.push(selectedIsolation);
                 }

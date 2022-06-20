@@ -492,7 +492,7 @@ input[type='checkbox']:checked+.week-label:before {
     height: 110%;
     width: 100%;
     image-rendering: optimizeQuality;
-    background-image: url('C:\Users\benfo\Desktop\WorkoutWebsite\my-app\src\Components\WorkoutPlanMaker\BottomPhoto.jpg');
+    background-image: url('../WorkoutPlanMaker/BottomPhoto.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

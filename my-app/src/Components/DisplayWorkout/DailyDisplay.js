@@ -18,10 +18,9 @@ const DailyDisplay = (props) => {
     else if(props.workoutType === 'fullbody'){
         console.log(FullbodyAlgorithm(props.database, props.muscleGroup))
     }
-    
-    //else{
-      //  console.log(UpperLowerAlgorithm(props.database, props.muscleGroup))
-    //}
+    else{
+        console.log(UpperLowerAlgorithm(props.database, props.muscleGroup))
+    }
 
 
     return (
