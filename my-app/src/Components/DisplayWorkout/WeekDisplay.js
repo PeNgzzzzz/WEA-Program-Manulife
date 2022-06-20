@@ -8,17 +8,7 @@ const WeekDisplay = (props) => {
 
     let database = []
 
-    useEffect(() => {
-        fetch("https://api.airtable.com/v0/apphWFw7ZFVtrFDU1/Excersize?api_key=keyq9zwQFUhapGR9W")
-            .then((res) => res.json())
-            .then((data) => {
-                database.push(data.records);
-                //database = database[0];
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+    
 
     
     console.log(database)
