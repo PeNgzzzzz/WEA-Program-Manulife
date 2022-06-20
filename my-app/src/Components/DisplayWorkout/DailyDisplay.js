@@ -22,6 +22,11 @@ const DailyDisplay = (props) => {
         objs = FullbodyAlgorithm(props.database, props.muscleGroup);
         console.log(objs)
     }
+    else{
+        console.log(UpperLowerAlgorithm(props.database, props.muscleGroup))
+    }
+
+    /*
     var i = 0;
     for (i; i < objs.length; i++) {
         exers.push(objs[i].name + ": " + objs[i].muscle);
@@ -30,9 +35,7 @@ const DailyDisplay = (props) => {
         exers.push("Not applicable");
         i++;
     }
-    else{
-        console.log(UpperLowerAlgorithm(props.database, props.muscleGroup))
-    }
+    
 
     return(
         <tr>
@@ -47,6 +50,7 @@ const DailyDisplay = (props) => {
             <th>{exers[5]}</th>
         </tr>
     )
+    */
 
 
 
