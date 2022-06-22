@@ -24,6 +24,8 @@ const SubmitForm = (props) => {
                 tempEquipArr.push(equipBox[i].id)
             }
         }
+        tempEquipArr.push('Body Weight')
+
 
         //adds days in week 
         let daysinweek = ['sunday', 'monday', 'tuesday', 'wednsday', 'thursday', 'friday', 'saturday']
@@ -51,30 +53,24 @@ const SubmitForm = (props) => {
                 <div id='equip-description'>Personalized workout.  Personalized equipment.</div>
                 <div id='EquipmentBox'>
 
-
-                    <input type="checkbox" className='equipCheck' id="Band" name="equipCheck" />
-                    <label for='Band' className="equip">
-                        <div className='equipName'>band</div>
+                    <input type="checkbox" className='equipCheck' id="Dumbbells" name="equipCheck" />
+                    <label for='Dumbbells' className="equip">
+                        <div className='equipName'>Dumbbells</div>
                     </label>
 
                     <input type="checkbox" className='equipCheck' id="Bar" name="equipCheck" />
                     <label for='Bar' className="equip">
-                        <div className='equipName'>Bar</div>
+                        <div className='equipName'>BarBell</div>
                     </label>
 
-                    <input type="checkbox" className='equipCheck' id="BodyWeight" name="equipCheck" />
-                    <label for='BodyWeight' className="equip">
-                        <div className='equipName'>Body Weight</div>
-                    </label>
+                    <input type="checkbox" className='equipCheck' id="Band" name="equipCheck" />
+                    <label for='Band' className="equip">
+                        <div className='equipName'>band</div>
+                    </label> 
 
-                    <input type="checkbox" className='equipCheck' id="BosuBall" name="equipCheck" />
-                    <label for='BosuBall' className="equip">
-                        <div className='equipName'>Bosu Ball</div>
-                    </label>
-
-                    <input type="checkbox" className='equipCheck' id="Dumbbells" name="equipCheck" />
-                    <label for='Dumbbells' className="equip">
-                        <div className='equipName'>Dumbbells</div>
+                    <input type="checkbox" className='equipCheck' id="Rope" name="equipCheck" />
+                    <label for='Rope' className="equip">
+                        <div className='equipName'>Rope</div>
                     </label>
 
                     <input type="checkbox" className='equipCheck' id="Kettlebells" name="equipCheck" />
@@ -87,21 +83,6 @@ const SubmitForm = (props) => {
                         <div className='equipName'>Landmine</div>
                     </label>
 
-                    <input type="checkbox" className='equipCheck' id="Rope" name="equipCheck" />
-                    <label for='Rope' className="equip">
-                        <div className='equipName'>Rope</div>
-                    </label>
-
-                    <input type="checkbox" className='equipCheck' id="SquatRack" name="equipCheck" />
-                    <label for='SquatRack' className="equip">
-                        <div className='equipName'>Squat Rack</div>
-                    </label>
-
-                    <input type="checkbox" className='equipCheck' id="TRX" name="equipCheck" />
-                    <label for='TRX' className="equip">
-                        <div className='equipName'>TRX</div>
-                    </label>
-
                     <input type="checkbox" className='equipCheck' id="Cable" name="equipCheck" />
                     <label for='Cable' className="equip">
                         <div className='equipName'>Cable</div>
@@ -112,15 +93,6 @@ const SubmitForm = (props) => {
                         <div className='equipName'>Machine</div>
                     </label>
 
-                    <input type="checkbox" className='equipCheck' id="Bench" name="equipCheck" />
-                    <label for='Bench' className="equip">
-                        <div className='equipName'>Bench</div>
-                    </label>
-
-                    <input type="checkbox" className='equipCheck' id="MedicineBall" name="equipCheck" />
-                    <label for='MedicineBall' className="equip">
-                        <div className='equipName'>Medicine Ball</div>
-                    </label>
                 </div>
             </div>
         )
