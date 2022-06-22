@@ -31,6 +31,7 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
             if (filteredExcersize) {
                 let selectedWarmup = selectExcersize(filteredExcersize);
+                console.log(selectedWarmup)
                 selectedWarmup = { 'name': selectedWarmup.Exercise, 'muscle': 'warmup', 'reps': warmupReps, 'image': 'IMAGEURL' }
                 excersizesForDay.push(selectedWarmup);
             }
