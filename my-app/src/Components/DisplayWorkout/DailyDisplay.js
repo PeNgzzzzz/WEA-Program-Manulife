@@ -50,10 +50,11 @@ const DailyDisplay = (props) => {
         console.log(objs)
     }
     else{
+        objs = UpperLowerAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
         console.log(UpperLowerAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps));
     }
 
-    /*
+    
     var i = 0;
     for (i; i < objs.length; i++) {
         exers.push(objs[i].name + ": " + objs[i].muscle);
@@ -77,7 +78,7 @@ const DailyDisplay = (props) => {
             <th>{exers[5]}</th>
         </tr>
     )
-    */
+
 
 
 
