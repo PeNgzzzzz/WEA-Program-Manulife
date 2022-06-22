@@ -22,10 +22,10 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
                 filteredExcersize = database.filter(excersize => excersize.Warmup === muscleGroup);
             }
             else if (goal === 'loseFat') {
-                filteredExcersize = database.filter(excersize => excersize["Exercise Type"] === "Laps");
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === "Cardio");
             }
             else{
-                filteredExcersize = database.filter(excersize => excersize["Exercise Type"] === 'Plyo');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo');
             }
 
 
@@ -80,7 +80,7 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
                 numOfCompounds = 4;
 
-                filteredExcersize = database.filter(excersize => excersize["Exercise Type"] === 'Cardio' && excersize.Compound === 'yes');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio' && excersize.Compound === 'yes');
 
                 if (filteredExcersize) {
                     //gets two compound excersizes
@@ -105,7 +105,7 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
                 numOfCompounds = 5;
 
-                filteredExcersize = database.filter(excersize => excersize["Exercise Type"] === 'Laps');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo');
                 console.log(filteredExcersize)
                 if (filteredExcersize) {
                     //gets two compound excersizes
@@ -159,7 +159,7 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
             }
             else if (goal === 'loseFat') {
 
-                filteredExcersize = database.filter(excersize => excersize["Exercise Type"] === 'Cardio' && excersize.Compound === 'no');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio' && excersize.Compound === 'no');
 
                 if (filteredExcersize) {
                     //gets two isolation excersizes
@@ -177,7 +177,7 @@ const FullbodyAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
             }
 
             else{
-                filteredExcersize = database.filter(excersize => excersize["Exercise Type"] === 'Cardio' && excersize.Compound === 'yes');
+                filteredExcersize = database.filter(excersize => (excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo') && excersize.Compound === 'yes');
 
                 if (filteredExcersize) {
                     //gets two isolation excersizes
