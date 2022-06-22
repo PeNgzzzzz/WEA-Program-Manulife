@@ -3,7 +3,7 @@ const selectExcersize = (arr) => {
 }
 
 
-const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps, isolationReps) => {
+const PushPullAlgorithm = (database, equip, muscleGroup, goal, warmupReps, compoundReps, isolationReps) => {
 
 
     //array represents the excersizes performed
@@ -18,20 +18,20 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
             if (goal === 'buildMuscle' || goal === 'buildStrength') {
                 if (muscleGroup === 'upper') {
-                    filteredExcersize = database.filter(excersize => excersize.Warmup === 'push' || excersize.Warmup === 'pull');
+                    filteredExcersize = database.filter(excersize => excersize.Warmup === 'push' || excersize.Warmup === 'pull' && equip.includes(excersize.Equipment));
                 }
 
                 else {
-                    filteredExcersize = database.filter(excersize => excersize.Warmup === 'legs');
+                    filteredExcersize = database.filter(excersize => excersize.Warmup === 'legs' && equip.includes(excersize.Equipment));
                 }
             }
 
             else if (goal === 'loseFat') {
-                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio' && equip.includes(excersize.Equipment));
             }
 
             else{
-                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo' && equip.includes(excersize.Equipment));
 
             }
 
@@ -53,14 +53,19 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
             let numOfCompounds;
 
             if (goal === 'buildMuscle' || goal === 'buildStrength') {
+                
+                if (equip.indexOf('Dumbbells') !== -1) { equip = equip.filter(equip => equip !== 'Body Weight') }
+                
+
                 if (muscleGroup === 'upper') {
-                    filteredExcersize = database.filter(excersize => ((excersize.MajorMuscle === 'Back' || excersize.MajorMuscle === 'Chest' || excersize.MajorMuscle === 'Shoulders') && excersize.Compound === 'yes' && excersize.Warmup === 'no'))
+                    filteredExcersize = database.filter(excersize => ((excersize.MajorMuscle === 'Back' || excersize.MajorMuscle === 'Chest' 
+                        || excersize.MajorMuscle === 'Shoulders') && excersize.Compound === 'yes' && excersize.Warmup === 'no' && equip.includes(excersize.Equipment)))
 
                     numOfCompounds = 3
                 }
                 else {
                     //HAVE TO ADD COMPPUND AS FILTER
-                    filteredExcersize = database.filter(excersize => (excersize.MajorMuscle === 'Legs' && excersize.MinorMuscle !== 'Calves'))
+                    filteredExcersize = database.filter(excersize => (excersize.MajorMuscle === 'Legs' && excersize.MinorMuscle !== 'Calves' && equip.includes(excersize.Equipment)))
 
                     numOfCompounds = 4
                 }
@@ -99,7 +104,7 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
             else if (goal === 'loseFat') {
                 let numOfCompounds = 3;
                 
-                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio' && excersize.Compound === 'yes');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio' && excersize.Compound === 'yes' && equip.includes(excersize.Equipment));
                 
                 if (filteredExcersize) {
                     //gets two compound excersizes
@@ -125,7 +130,7 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
 
             else{
                 let numOfCompounds = 3;
-                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo' && equip.includes(excersize.Equipment));
                 if (filteredExcersize) {
                     //gets two compound excersizes
                     while (excersizesForDay.length <= numOfCompounds) {
@@ -160,10 +165,10 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
         if (muscleGroup != 'rest') {
             if (goal === 'buildMuscle' || goal === 'buildStrength') {
                 if (muscleGroup === 'upper') {
-                    filteredExcersize = database.filter(excersize => ((excersize.MinorMuscle === 'Bicep' || excersize.MinorMuscle === 'Tricep') && excersize.Compound === 'no' && excersize.Warmup === 'no'))
+                    filteredExcersize = database.filter(excersize => ((excersize.MinorMuscle === 'Bicep' || excersize.MinorMuscle === 'Tricep') && excersize.Compound === 'no' && excersize.Warmup === 'no' && equip.includes(excersize.Equipment)))
                 }
                 else {
-                    filteredExcersize = database.filter(excersize => (excersize.MinorMuscle === 'Calves'))
+                    filteredExcersize = database.filter(excersize => (excersize.MinorMuscle === 'Calves' && equip.includes(excersize.Equipment)))
                 }
 
 
@@ -193,7 +198,7 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
             else if (goal === 'loseFat') {
 
 
-                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Cardio' && equip.includes(excersize.Equipment));
 
                 if (filteredExcersize) {
                     //gets two compound excersizes
@@ -219,7 +224,7 @@ const PushPullAlgorithm = (database, muscleGroup, goal, warmupReps, compoundReps
             else{
              
 
-                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo');
+                filteredExcersize = database.filter(excersize => excersize.ExerciseType === 'Yoga' || excersize.ExerciseType === 'Plyo' && equip.includes(excersize.Equipment));
                 if (filteredExcersize) {
                     //gets two compound excersizes
                     while (excersizesForDay.length < 6) {

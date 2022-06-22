@@ -47,16 +47,16 @@ const DailyDisplay = (props) => {
     }
     
     if(props.workoutType === 'PushPull'){
-        objs = PushPullAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
+        objs = PushPullAlgorithm(props.database, props.equip, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
         console.log(objs);
     }
     else if(props.workoutType === 'fullbody'){
-        objs = FullbodyAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
+        objs = FullbodyAlgorithm(props.database, props.equip, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
         console.log(objs)
     }
     else{
-        objs = UpperLowerAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
-        console.log(UpperLowerAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps));
+        objs = UpperLowerAlgorithm(props.database, props.equip, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
+        console.log(objs);
     }
 
     
