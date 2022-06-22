@@ -40,6 +40,11 @@ const DailyDisplay = (props) => {
         compoundReps = '3x5 min';
         isolationReps = '2x5 min';
     }
+    else{
+        warmupReps = '2x5 min';
+        compoundReps = '3x5 min';
+        isolationReps = '2x5 min';
+    }
     
     if(props.workoutType === 'PushPull'){
         objs = PushPullAlgorithm(props.database, props.muscleGroup, props.goal, warmupReps, compoundReps, isolationReps);
@@ -60,7 +65,7 @@ const DailyDisplay = (props) => {
         exers.push(objs[i].name + ": " + objs[i].muscle);
     }
     while ( i < 6 ) {
-        exers.push("Not applicable");
+        exers.push("Rest Day");
         i++;
     }
     
