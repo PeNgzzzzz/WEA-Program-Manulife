@@ -18,6 +18,8 @@ function App() {
 
   //test change
 
+  
+
 
   useEffect(() => {
     fetch("https://restapi-wea202.herokuapp.com/api/exercises")
@@ -27,6 +29,9 @@ function App() {
         console.log(error);
       })
   }, [])
+  
+
+
 
   return (
     <Router>
