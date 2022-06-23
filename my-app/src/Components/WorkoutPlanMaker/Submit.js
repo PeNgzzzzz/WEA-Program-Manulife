@@ -180,14 +180,6 @@ const SubmitForm = (props) => {
                         <img className='goal-image' src='https://static.onecms.io/wp-content/uploads/sites/35/2021/07/23/best-cardio-exercises-promo-2000.jpg' />
                     </label>
                 </div>
-
-                <div id='goal-container-four' className="btn">
-                    <input type="radio" className='goal-button' id='buildMobility' name="goalCheck" value="buildMobility" onChange={UpdateValue} />
-                    <label htmlFor='buildMobility' className='goal-label'>
-                        <span className='goal-label-text'>Get Mobile</span>
-                        <img className='goal-image' src='https://ounews.co/wp-content/uploads/2017/12/shutterstock_552668005-e1513677714136.jpg' />
-                    </label>
-                </div>
             </div>
         )
     }
