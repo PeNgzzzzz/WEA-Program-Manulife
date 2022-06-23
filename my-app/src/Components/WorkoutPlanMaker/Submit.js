@@ -8,41 +8,33 @@ const SubmitForm = (props) => {
     let tempDaysWeek = []
     let tempGoal
 
-
-
-
     //adds equipment to equipment list
     const SubmitData = () => {
 
-        let tempEquipArr = []
-
+        let tempEquipArr = [];
 
         //adding equipment to equip state array 
         let equipBox = document.getElementsByName("equipCheck");
         for (var i = 0; i < equipBox.length; i++) {
             if (equipBox[i].checked === true) {
-                tempEquipArr.push(equipBox[i].id)
+                tempEquipArr.push(equipBox[i].id);
             }
         }
-        tempEquipArr.push('Body Weight')
-
+        tempEquipArr.push('Body Weight');
 
         //adds days in week 
         let daysinweek = ['sunday', 'monday', 'tuesday', 'wednsday', 'thursday', 'friday', 'saturday']
         for (var i = 0; i < daysinweek.length; i++) {
             if (document.getElementById(daysinweek[i]).checked === true) {
-                tempDaysWeek = [...tempDaysWeek, { name: daysinweek[i], workout: 'yes' }]
+                tempDaysWeek = [...tempDaysWeek, { name: daysinweek[i], workout: 'yes' }];
             }
         }
 
+        props.setEquip([...tempEquipArr]);
 
-        props.setEquip([...tempEquipArr])
+        props.setDays([...tempDaysWeek]);
 
-        props.setDays([...tempDaysWeek])
-
-        props.setGoal(tempGoal)
-
-
+        props.setGoal(tempGoal);
     }
 
     //Displays Chechbox htmlFor getting equipment
@@ -100,10 +92,9 @@ const SubmitForm = (props) => {
 
     //Handles updating days of week state
     const DaysSelect = (e) => {
-
         return (
             <div id='week-container'>
-                <div id='week-title'>1. Weekly Schedule</div>
+                <div id='week-title'>2. Weekly Schedule</div>
                 <div id='week-description'>We know life gets busy. So tell us when you want to workout and we will work aROUND you</div>
                 <div id='week'>
                     <input type="checkbox" className="daybtn" id="sunday" name="dayCheck" />
@@ -116,68 +107,57 @@ const SubmitForm = (props) => {
                         <div className='day'>monday</div>
                     </label>
 
-
-
-
                     <input type="checkbox" className="daybtn" id="tuesday" name="dayCheck" />
                     <label htmlFor='tuesday' className='week-label'>
                         <div className='day'>Tuesday</div>
                     </label>
-
-
 
                     <input type="checkbox" className="daybtn" id="wednsday" name="dayCheck" />
                     <label htmlFor='wednsday' className='week-label'>
                         <div className='day'>Wednsday</div>
                     </label>
 
-
-
                     <input type="checkbox" className="daybtn" id="thursday" name="dayCheck" />
                     <label htmlFor='thursday' className='week-label'>
                         <div className='day'>Thursday</div>
                     </label>
-
-
 
                     <input type="checkbox" className="daybtn" id="friday" name="dayCheck" />
                     <label htmlFor='friday' className='week-label'>
                         <div className='day'>Friday</div>
                     </label>
 
-
                     <input type="checkbox" className="daybtn" id="saturday" name="dayCheck" />
                     <label htmlFor='saturday' className='week-label'>
                         <div className='day'>Saturday</div>
                     </label>
 
-
                 </div>
             </div>
         )
-
-
-
     }
 
-
+    // Handles the goal buttons
     const ExcersizeGoal = () => {
-
-
-
-
         const UpdateValue = () => {
             var selector = document.querySelector('input[name="goalCheck"]:checked');
             if (selector) {
                 tempGoal = (selector.value)
             }
         }
-
         return (
             <div id='goal-container'>
                 <div id='goal-title'>1. Workout Goal</div>
 
                 <div id='goal-container-one' className="btn">
+                    <input type="radio" className='goal-button' id='buildMobility' name="goalCheck" value="buildMobility" onChange={UpdateValue} defaultChecked={true}/>
+                    <label for='buildMobility' className='goal-label'>
+                        <span className='goal-label-text'>Get Mobile</span>
+                        <img className='goal-image' src='https://ounews.co/wp-content/uploads/2017/12/shutterstock_552668005-e1513677714136.jpg' />
+                    </label>
+                </div>
+
+                <div id='goal-container-two' className="btn">
                     <input type="radio" className='goal-button' id='buildStrength' name="goalCheck" value="buildStrength" onChange={UpdateValue} />
                     <label htmlFor='buildStrength' className='goal-label'>
                         <span className='goal-label-text'>Gain Strength</span>
@@ -185,7 +165,7 @@ const SubmitForm = (props) => {
                     </label>
                 </div>
 
-                <div id='goal-container-two' className="btn">
+                <div id='goal-container-three' className="btn">
                     <input type="radio" className='goal-button' id='buildMuscle' name="goalCheck" value="buildMuscle" onChange={UpdateValue} />
                     <label htmlFor='buildMuscle' className='goal-label'>
                         <span className='goal-label-text'>Build Muscle</span>
@@ -193,7 +173,7 @@ const SubmitForm = (props) => {
                     </label>
                 </div>
 
-                <div id='goal-container-three' className="btn">
+                <div id='goal-container-four' className="btn">
                     <input type="radio" className='goal-button' id='loseFat' name="goalCheck" value="loseFat" onChange={UpdateValue} />
                     <label htmlFor='loseFat' className='goal-label'>
                         <span className='goal-label-text'>lose Fat</span>
@@ -211,8 +191,6 @@ const SubmitForm = (props) => {
             </div>
         )
     }
-
-
 
     return (
         <div id='submitContainer'>

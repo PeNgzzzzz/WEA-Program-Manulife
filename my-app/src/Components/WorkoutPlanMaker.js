@@ -7,11 +7,6 @@ import LandingPage from './WorkoutPlanMaker/landingPage'
 
 const ExcersizeFromEquipment = (props) => {
 
-    
-
-    //
-    //
-
     return(
         <div id='background'>
             <Nav />
