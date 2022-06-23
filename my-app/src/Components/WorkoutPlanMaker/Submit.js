@@ -8,41 +8,33 @@ const SubmitForm = (props) => {
     let tempDaysWeek = []
     let tempGoal
 
-
-
-
     //adds equipment to equipment list
     const SubmitData = () => {
 
-        let tempEquipArr = []
-
+        let tempEquipArr = [];
 
         //adding equipment to equip state array 
         let equipBox = document.getElementsByName("equipCheck");
         for (var i = 0; i < equipBox.length; i++) {
             if (equipBox[i].checked === true) {
-                tempEquipArr.push(equipBox[i].id)
+                tempEquipArr.push(equipBox[i].id);
             }
         }
-        tempEquipArr.push('Body Weight')
-
+        tempEquipArr.push('Body Weight');
 
         //adds days in week 
         let daysinweek = ['sunday', 'monday', 'tuesday', 'wednsday', 'thursday', 'friday', 'saturday']
         for (var i = 0; i < daysinweek.length; i++) {
             if (document.getElementById(daysinweek[i]).checked === true) {
-                tempDaysWeek = [...tempDaysWeek, { name: daysinweek[i], workout: 'yes' }]
+                tempDaysWeek = [...tempDaysWeek, { name: daysinweek[i], workout: 'yes' }];
             }
         }
 
+        props.setEquip([...tempEquipArr]);
 
-        props.setEquip([...tempEquipArr])
+        props.setDays([...tempDaysWeek]);
 
-        props.setDays([...tempDaysWeek])
-
-        props.setGoal(tempGoal)
-
-
+        props.setGoal(tempGoal);
     }
 
     //Displays Chechbox for getting equipment
@@ -102,7 +94,7 @@ const SubmitForm = (props) => {
     const DaysSelect = (e) => {
         return (
             <div id='week-container'>
-                <div id='week-title'>1. Weekly Schedule</div>
+                <div id='week-title'>2. Weekly Schedule</div>
                 <div id='week-description'>We know life gets busy. So tell us when you want to workout and we will work aROUND you</div>
                 <div id='week'>
                     <input type="checkbox" className="daybtn" id="sunday" name="dayCheck" />
@@ -112,7 +104,7 @@ const SubmitForm = (props) => {
 
                     <input type="checkbox" className="daybtn" id="monday" name="dayCheck" />
                     <label for='monday' className='week-label'>
-                        <div className='day'>monday</div>
+                        <div className='day'>Monday</div>
                     </label>
 
                     <input type="checkbox" className="daybtn" id="tuesday" name="dayCheck" />
@@ -122,7 +114,7 @@ const SubmitForm = (props) => {
 
                     <input type="checkbox" className="daybtn" id="wednsday" name="dayCheck" />
                     <label for='wednsday' className='week-label'>
-                        <div className='day'>Wednsday</div>
+                        <div className='day'>Wednesday</div>
                     </label>
 
                     <input type="checkbox" className="daybtn" id="thursday" name="dayCheck" />
@@ -145,7 +137,7 @@ const SubmitForm = (props) => {
         )
     }
 
-
+    // Handles the goal buttons
     const ExcersizeGoal = () => {
         const UpdateValue = () => {
             var selector = document.querySelector('input[name="goalCheck"]:checked');
@@ -193,8 +185,6 @@ const SubmitForm = (props) => {
             </div>
         )
     }
-
-
 
     return (
         <div id='submitContainer'>
