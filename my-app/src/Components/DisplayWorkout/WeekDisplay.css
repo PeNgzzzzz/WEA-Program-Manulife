@@ -14,7 +14,8 @@
 h1 {
     position: static;
     color: red;
-    text-align: center;
+    display: block;
+    margin: 0 auto;
 }
 
 div {
@@ -23,10 +24,11 @@ div {
 
 table {
     border-collapse: collapse;
-    border: 2px solid green;
     letter-spacing: 1px;
     font-size: 0.8rem;
     text-align: center;
+    display: block;
+    margin: 0 auto;
 }
   
 td, th {

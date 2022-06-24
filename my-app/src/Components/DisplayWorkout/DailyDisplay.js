@@ -62,7 +62,7 @@ const DailyDisplay = (props) => {
     
     var i = 0;
     for (i; i < objs.length; i++) {
-        exers.push(objs[i].name + ": " + objs[i].muscle);
+        exers.push(objs[i].reps + "; " + objs[i].name + ": " + objs[i].muscle);
     }
     while ( i < 6 ) {
         exers.push("Rest Day");
@@ -71,7 +71,7 @@ const DailyDisplay = (props) => {
     
 
     return(
-        <tr>
+        <tr >
             <td>
                 {day}
             </td>
