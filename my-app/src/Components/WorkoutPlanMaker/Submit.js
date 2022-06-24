@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 const SubmitForm = (props) => {
 
-    let tempDaysWeek = []
-    let tempGoal
+    let tempDaysWeek = [];
+    let tempGoal;
 
     //adds equipment to equipment list
     const SubmitData = () => {
@@ -142,7 +142,7 @@ const SubmitForm = (props) => {
         const UpdateValue = () => {
             var selector = document.querySelector('input[name="goalCheck"]:checked');
             if (selector) {
-                tempGoal = (selector.value)
+                tempGoal = (selector.value);
             }
         }
         return (
@@ -151,7 +151,7 @@ const SubmitForm = (props) => {
 
                 <div id='goal-container-one' className="btn">
                     <input type="radio" className='goal-button' id='buildMobility' name="goalCheck" value="buildMobility" onChange={UpdateValue} defaultChecked={true}/>
-                    <label for='buildMobility' className='goal-label'>
+                    <label htmlFor='buildMobility' className='goal-label'>
                         <span className='goal-label-text'>Get Mobile</span>
                         <img className='goal-image' src='https://ounews.co/wp-content/uploads/2017/12/shutterstock_552668005-e1513677714136.jpg' />
                     </label>
@@ -197,4 +197,4 @@ const SubmitForm = (props) => {
     )
 }
 
-export default SubmitForm
+export default SubmitForm;

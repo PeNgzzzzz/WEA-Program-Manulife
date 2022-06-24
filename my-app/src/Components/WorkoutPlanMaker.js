@@ -9,11 +9,10 @@ const ExcersizeFromEquipment = (props) => {
 
     return(
         <div id='background'>
-            <Nav />
             <LandingPage />
             <SubmitForm equip={props.equip} setEquip={props.setEquip} daysOfWeek={props.daysOfWeek} setDays={props.setDays} goal={props.goal} setGoal={props.setGoal}/>        
         </div>
     )
 }
 
-export default ExcersizeFromEquipment
+export default ExcersizeFromEquipment;

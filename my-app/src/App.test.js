@@ -16,7 +16,6 @@ test("Initial Render fetches data from Api", async () => {
     
 })
 
-
 test("App Renders On Startup", () => {
     const app = render(<App />)
     expect(app).toBeDefined();
