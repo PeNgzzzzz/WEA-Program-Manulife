@@ -104,7 +104,7 @@ const SubmitForm = (props) => {
 
                     <input type="checkbox" className="daybtn" id="monday" name="dayCheck" />
                     <label htmlFor='monday' className='week-label'>
-                        <div className='day'>monday</div>
+                        <div className='day'>Monday</div>
                     </label>
 
                     <input type="checkbox" className="daybtn" id="tuesday" name="dayCheck" />
@@ -114,7 +114,7 @@ const SubmitForm = (props) => {
 
                     <input type="checkbox" className="daybtn" id="wednsday" name="dayCheck" />
                     <label htmlFor='wednsday' className='week-label'>
-                        <div className='day'>Wednsday</div>
+                        <div className='day'>Wednesday</div>
                     </label>
 
                     <input type="checkbox" className="daybtn" id="thursday" name="dayCheck" />
@@ -176,7 +176,7 @@ const SubmitForm = (props) => {
                 <div id='goal-container-four' className="btn">
                     <input type="radio" className='goal-button' id='loseFat' name="goalCheck" value="loseFat" onChange={UpdateValue} />
                     <label htmlFor='loseFat' className='goal-label'>
-                        <span className='goal-label-text'>lose Fat</span>
+                        <span className='goal-label-text'>Lose Fat</span>
                         <img className='goal-image' src='https://static.onecms.io/wp-content/uploads/sites/35/2021/07/23/best-cardio-exercises-promo-2000.jpg' />
                     </label>
                 </div>
