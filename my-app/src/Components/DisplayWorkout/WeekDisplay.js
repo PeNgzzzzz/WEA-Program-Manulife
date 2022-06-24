@@ -58,7 +58,7 @@ const WeekDisplay = (props) => {
         //<div>{week}</div>
 
         <html>
-        <head><title>Workout Schedule</title></head>
+        {/* //<head><title>Workout Schedule</title></head> */}
     
         <body>
             <h1>Workout Schedule</h1>
