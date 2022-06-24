@@ -37,7 +37,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
         <Routes>
           <Route path="/" element={<WorkoutPlanMaker equip={equip} setEquip={setEquip} daysOfWeek={daysOfWeek} setDays={setDays} setGoal={setGoal} goal={goal} database={database} />} />
           <Route path="/myWorkout" element={<DisplayWorkout equip={equip} setEquip={setEquip} daysOfWeek={daysOfWeek} setDays={setDays} setGoal={setGoal} goal={goal} database={database} />} />
